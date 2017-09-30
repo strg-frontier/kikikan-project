@@ -1,0 +1,8 @@
+{% extends 'myapp/base.html' %}
+{% block body %}
+<form action="{% url 'myapp:myapp_index'%}" method="get">
+<label>メッセージ：<input type="text" size="20" name="words"></label>
+<input type="submit" value="送信">
+</form>
+{% include "myapp/result.html" %}
+{% endblock %}
