@@ -1,0 +1,4 @@
+#/bin/bash
+
+sed -e 's/django.db.backends.mysql/django.db.backends.mysql/g' setting.py
+sed -e 'a/django.db.backends.mysql/        'NAME': 'dbuser',' setting.py
