@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^helloworld/',include('helloworld.urls',namespace='helloworld')),
     url(r'^myapp/',include('myapp.urls',namespace='myapp')),
+    url(r'accounts/',include('accounts.urls')),
 ]

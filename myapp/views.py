@@ -1,7 +1,11 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from .models import Message_bord
 from mysite.parser import *
 
+
+@login_required
 def myapp_index(request):
   msg = request.GET.get('words')
 
