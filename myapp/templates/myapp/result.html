@@ -1,5 +1,10 @@
 {% if result_list %}
+<table  border="1" class="table table-hover">
+<tr><th>message table</th></tr>
 {% for i in result_list %}
+<tr><td>
 <p>{{ i.new_message }}</p>
+</td></tr>
 {% endfor %}
+</table>
 {% endif %}
