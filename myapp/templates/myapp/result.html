@@ -3,7 +3,7 @@
 <tr><th>message table</th></tr>
 {% for i in result_list %}
 <tr><td>
-<p>{{ i.new_message }}</p>
+<p><input type="checkbox" name="delete_text" value="{{i.id}}">{{ i.new_message }}</p>
 </td></tr>
 {% endfor %}
 </table>
