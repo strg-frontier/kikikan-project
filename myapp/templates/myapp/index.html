@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 {{ user_name }} でログイン中
-<form action="{% url 'myapp:myapp_index'%}" method="get">
+<form action="{% url 'myapp:myapp_index'%}" method="post">{% csrf_token %}
 <label>メッセージ：<input type="text" size="20" name="words"></label>
 <input type="submit" value="送信">
 </form>

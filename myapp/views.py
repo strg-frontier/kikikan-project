@@ -23,7 +23,7 @@ def myapp_index(request):
   user = User.objects.get(id=user_id)
   user_name = user.get_username()
   print(user_name)
-  msg = request.GET.get('words')
+  msg = request.POST.get('words')
   
 
   #文字列が入力されていなければ、現在のDB情報の取得のみ
