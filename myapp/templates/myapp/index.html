@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block body %}
-sss
 {{ login_user }} でログイン中
 
+<table border=1>
+<tr><th>日時</th><th>体重</th></tr>
 {% for i in user_weight %}
-{{ i.date }} 
-{{ i.weight }}
+<tr>
+<td>{{ i.date }} </td>
+<td>{{ i.weight }}</td>
+</tr>
 {% endfor %}
+</table>
 
 {% for j in friend_list %}
 {{ j.user_name }}
