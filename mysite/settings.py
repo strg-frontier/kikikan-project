@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'helloworld',
     'myapp',
     'accounts',
+    'weight',
+    'friend',
 ]
 
 MIDDLEWARE = [

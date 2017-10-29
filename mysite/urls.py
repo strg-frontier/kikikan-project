@@ -21,4 +21,6 @@ urlpatterns = [
     url(r'^helloworld/',include('helloworld.urls',namespace='helloworld')),
     url(r'^myapp/',include('myapp.urls',namespace='myapp')),
     url(r'accounts/',include('accounts.urls')),
+    url(r'^weight/',include('weight.urls')),
+    url(r'^friend/',include('friend.urls')),
 ]
