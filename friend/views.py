@@ -27,10 +27,6 @@ def get_friend_list(request):
         #自分の名称は除外
         friendNameList = User.objects.filter(Q(id__in=friendIdList), ~Q(id = requested_user))
 
-        nameList = []
-        for y in friendNameList:
-            nameList.append(y.username)
+        print(friendNameList)
 
-        print(nameList)
-
-    return nameList
+    return friendNameList
