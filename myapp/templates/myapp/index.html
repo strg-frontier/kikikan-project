@@ -12,8 +12,13 @@
 {% endfor %}
 </table>
 
+<hr>
+<table border=1>
+<tr><th>フレンド</th></tr>
 {% for j in friend_list %}
-{{ j.user_name }}
+<tr>
+<td>{{ j.username }}</td>
+</tr>
 {% endfor %}
 
 {% endblock %}
