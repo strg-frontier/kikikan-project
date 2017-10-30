@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% block body %}
-sss
-{{ user_name }} でログイン中
-<form action="{% url 'myapp:myapp_index'%}" method="post">{% csrf_token %}
-<label>メッセージ：<input type="text" size="20" name="words"></label>
-<input type="submit" value="送信">
-</form>
+{{ login_user }} でログイン中
 
-<form action="{% url 'myapp:myapp_delete' %}" method="post">{% csrf_token %}
-{% include "myapp/result.html" %}
-<input type="submit" value="削除">
-</form>
+<table border=1>
+<tr><th>日時</th><th>体重</th></tr>
+{% for i in user_weight %}
+<tr>
+<td>{{ i.date }} </td>
+<td>{{ i.weight }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% for j in friend_list %}
+{{ j.user_name }}
+{% endfor %}
+
 {% endblock %}

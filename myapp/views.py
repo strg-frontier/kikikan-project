@@ -3,22 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.contrib.auth.validators import ASCIIUsernameValidator
-from .models import Message_bord
-from mysite.parser import *
+from weight.views import *
+#from friend.views import *
 
-#削除機能
-@login_required
-def myapp_delete(request):
-  delete_text = request.POST.getlist('delete_text')
-  print(delete_text)
-  if delete_text:
-    Message_bord.objects.filter(id__in=delete_text).delete()   
-
-  return(myapp_index(request))
 
 #トップ画面
 @login_required
-def myapp_index(request):
+def index(request):
   user_id = request.user.id
   user = User.objects.get(id=user_id)
   user_name = user.get_username()
@@ -26,40 +17,17 @@ def myapp_index(request):
   msg = request.POST.get('words')
   
 
-  #文字列が入力されていなければ、現在のDB情報の取得のみ
-  if msg is None:
-    data_list = Message_bord.objects.all()
-    
-    contexts = {
-      'result_list': data_list,
-      'user_name': user_name,
-    }
+  #体重情報取得
+  user_weight = get_weight(request)
 
-    return render(request,'myapp/index.html',contexts)
 
-  else: 
-    
-    #入力された文字列をパーサーにかける。
-    #返り値がFalseであれば、現在のDB情報の取得のみ
-    if parser_text(msg):
-      message_data = Message_bord()
-      message_data.new_message = msg
-
-      message_data.save()
-
-      data_list = Message_bord.objects.all()
-      contexts = {
-        'result_list': data_list,
-        'user_name': user_name,
-      }
-      return render(request,'myapp/index.html',contexts)
-
-    else:
-      data_list = Message_bord.objects.all()
-
-      contexts = {
-        'result_list': data_list,
-        'user_name': user_name,
-      }
-      return render(request,'myapp/index.html',contexts)
+  #フレンド情報取得
+  #friend_list = get_friend_list(request)
+  
+  context = {
+    'login_user':user_name,
+    'user_weight':user_weight,
+    #'friend_list':friend_list,
+  }
+  return render(request,'myapp/index.html',context)
 
