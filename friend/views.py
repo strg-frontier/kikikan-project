@@ -13,13 +13,18 @@ def get_friend_list(request):
 
     #ログインユーザが友達申請をしている、または申請されているユーザ一覧
     friendList = Friend.objects.filter(Q(requested_user=requested_user) | Q(follow_user=follow_user),
-                                       Q(request_state=0))
+                                       Q(request_state=1))
 
     print(friendList.values())
 
+    #レスポンス用の友達リスト
+    friendNameList = []
+
     #友達の名前取得
     if friendList:
+        #IN句で使用する友達IDリスト
         friendIdList = []
+
         for x in friendList:
             friendIdList.append(x.requested_user)
             friendIdList.append(x.follow_user)
@@ -27,6 +32,6 @@ def get_friend_list(request):
         #自分の名称は除外
         friendNameList = User.objects.filter(Q(id__in=friendIdList), ~Q(id = requested_user))
 
-        print(friendNameList)
+        print(friendNameList.values())
 
     return friendNameList
